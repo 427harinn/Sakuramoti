@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/oto/Scene/Stage_oto_Scene.unity
+    guid: d60851a25151fe54083ee79e56444260
+  - enabled: 1
+    path: Assets/Karakawa/Scenes/KarakawaStage.unity
+    guid: 2dad68368550645bb89723bef033e472
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

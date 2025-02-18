@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class TimerScript : MonoBehaviour
 {
+    [SerializeField] private GameObject finish;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +23,7 @@ public class TimerScript : MonoBehaviour
 
     public void StopTimer()
     {
+        finish.SetActive(true);
         Destroy(this.gameObject);
         GManager.instance.gamePlayingFlag = false;
     }

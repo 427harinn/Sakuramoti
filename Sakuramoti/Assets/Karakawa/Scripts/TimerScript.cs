@@ -17,12 +17,12 @@ public class TimerScript : MonoBehaviour
 
     public void StartTimer()
     {
-        GManager.instance.gameStopFlag = true;
+        GManager.instance.gamePlayingFlag = true;
     }
 
     public void StopTimer()
     {
         Destroy(this.gameObject);
-        GManager.instance.gameStopFlag = false;
+        GManager.instance.gamePlayingFlag = false;
     }
 }

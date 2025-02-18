@@ -12,7 +12,9 @@ public class GManager : MonoBehaviour
 
     public int kasiwamotiScore = 0;
 
-    public bool gameStopFlag = false;
+    public int catScore = 3;
+
+    public bool gamePlayingFlag = false;
 
 
     private void Awake()

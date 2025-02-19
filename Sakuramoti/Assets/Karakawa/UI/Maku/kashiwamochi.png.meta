@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      kashiwamochi_0: 454599866091973363
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

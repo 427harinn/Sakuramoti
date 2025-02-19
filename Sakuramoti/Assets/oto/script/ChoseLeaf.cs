@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class ChoseLeaf : MonoBehaviour
 {
-public MotiSelect motiGame; // MotiGameの参照をInspectorでセット
+    public MotiSelect motiGame; // MotiGameの参照をInspectorでセット
     public string leafType; // sakura, domyo, kashiwa のどれか
 
     void Start()

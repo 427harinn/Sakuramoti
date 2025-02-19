@@ -1,10 +1,12 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class MotiDrag : MonoBehaviour
 {
     private bool isDragging = false;
-    private bool isInsideBox = false; // もちが箱の中にいるか
-    private string boxTag = ""; // 接触している箱のタグ
+    private HashSet<string> insideBoxes = new HashSet<string>(); // どの箱に入っているかを管理
+    private HashSet<GameObject> insideBoxesobj = new HashSet<GameObject>(); // どの箱に入っているかを管理
     private bool previousGamePlayingFlag = false; // 前回のゲーム状態を保存
 
     // 各種類の成功カウント（すべてのもちで共有）
@@ -13,16 +15,25 @@ public class MotiDrag : MonoBehaviour
     private static int kasiwaSuccessCount = 0;
     private static int catSuccessCount = 0;
 
+    private AudioSource seaudio;
+    public AudioClip clear;
+    public AudioClip nya;
+
+    public AudioClip fall;
+
+
+
+    void Start()
+    {
+        seaudio = this.gameObject.transform.parent.GetComponent<AudioSource>();
+    }
+
     void Update()
     {
-        Debug.Log("sakuraSuccessCount: " + sakuraSuccessCount);
-        Debug.Log("domyoSuccessCount: " + domyoSuccessCount);
-        Debug.Log("kasiwaSuccessCount: " + kasiwaSuccessCount);
-        Debug.Log("catSuccessCount: " + catSuccessCount);
         // ゲームの開始を検知（false → true）
         if (!previousGamePlayingFlag && GManager.instance.gamePlayingFlag)
         {
-            Debug.Log("ゲーム開始");
+            // Debug.Log("ゲーム開始");
         }
 
         // ゲームの終了を検知（true → false）
@@ -59,25 +70,69 @@ public class MotiDrag : MonoBehaviour
         {
             isDragging = false;
 
-            // もちが箱の中にいる && もちのタグと箱のタグが一致する場合に成功カウント
-            if (isInsideBox && this.gameObject.tag == boxTag)
+            // 正しい箱に入っている場合のみ成功カウントを加算
+            if (insideBoxes.Contains(this.gameObject.tag))
             {
                 if (this.gameObject.tag == "sakura")
                 {
+                    seaudio.PlayOneShot(clear);
+                    foreach (var obj in insideBoxesobj)
+                    {
+                        if (obj.tag == "sakura")
+                        {
+                            obj.GetComponent<Animator>().SetTrigger("success");
+                        }
+                    }
                     sakuraSuccessCount++;
                 }
                 else if (this.gameObject.tag == "domyo")
                 {
+                    seaudio.PlayOneShot(clear);
+                    foreach (var obj in insideBoxesobj)
+                    {
+                        if (obj.tag == "domyo")
+                        {
+                            obj.GetComponent<Animator>().SetTrigger("success");
+                        }
+                    }
                     domyoSuccessCount++;
                 }
                 else if (this.gameObject.tag == "kasiwa")
                 {
+                    seaudio.PlayOneShot(clear);
+                    foreach (var obj in insideBoxesobj)
+                    {
+                        if (obj.tag == "kasiwa")
+                        {
+                            obj.GetComponent<Animator>().SetTrigger("success");
+                        }
+                    }
                     kasiwaSuccessCount++;
                 }
                 else if (this.gameObject.tag == "cat")
                 {
+                    seaudio.PlayOneShot(nya);
+                    foreach (var obj in insideBoxesobj)
+                    {
+                        if (obj.tag == "cat")
+                        {
+                            obj.GetComponent<Animator>().SetTrigger("success");
+                        }
+                    }
                     catSuccessCount++;
                 }
+            }
+            else if (insideBoxes.Count == 0)
+            {
+                //何にも触れてない音
+                seaudio.PlayOneShot(fall);
+            }
+            else
+            {
+                //間違えた箱に入れた音
+
+                //最後に入ってるオブジェクトのアニメーションを再生
+                insideBoxesobj.ElementAt(0).GetComponent<Animator>().SetTrigger("fail");
             }
 
             // もちを削除
@@ -87,24 +142,27 @@ public class MotiDrag : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // 触れたオブジェクトが箱なら、情報を記録
+        Debug.Log("入った: " + other.gameObject.tag);
+
+        // 触れたオブジェクトが箱なら、リストに追加
         if (other.gameObject.CompareTag("sakura") ||
             other.gameObject.CompareTag("domyo") ||
             other.gameObject.CompareTag("kasiwa") ||
             other.gameObject.CompareTag("cat"))
         {
-            isInsideBox = true;
-            boxTag = other.gameObject.tag; // 触れた箱のタグを記録
+            insideBoxes.Add(other.gameObject.tag);
+            insideBoxesobj.Add(other.transform.GetChild(0).gameObject);
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        // 箱から出たらリセット
-        if (other.gameObject.tag == boxTag)
+        Debug.Log("出た: " + other.gameObject.tag);
+
+        // 退出した箱をリストから削除
+        if (insideBoxes.Contains(other.gameObject.tag))
         {
-            isInsideBox = false;
-            boxTag = "";
+            insideBoxes.Remove(other.gameObject.tag);
         }
     }
 

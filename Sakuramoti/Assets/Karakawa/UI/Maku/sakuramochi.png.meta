@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sakuramochi_0: -3521671154529877630
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

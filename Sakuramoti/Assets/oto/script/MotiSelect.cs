@@ -6,14 +6,15 @@ using System.Collections;
 
 public class MotiSelect : MonoBehaviour
 {
-    [SerializeField]private Image MotiImage;
-    [SerializeField]private Sprite[] MotiSprites;
-    [SerializeField]private Sprite[] ResultSprites;
-    [SerializeField]private Text resultText;
-    [SerializeField]private Text remainingText; // 残り回数を表示
-    [SerializeField]private AudioSource audioSource;  // AudioSource コンポーネント
-    [SerializeField]private AudioClip successClip;    // 正解時の音
-    [SerializeField]private AudioClip failureClip;    // 不正解時の音
+    [SerializeField] private Image MotiImage;
+    [SerializeField] private Sprite[] MotiSprites;
+    [SerializeField] private Sprite[] ResultSprites;
+    [SerializeField] private GameObject resultImage;
+    [SerializeField] private Sprite correctSprite;
+    [SerializeField] private Sprite failSprite;
+    [SerializeField] private AudioSource audioSource;  // AudioSource コンポーネント
+    [SerializeField] private AudioClip successClip;    // 正解時の音
+    [SerializeField] private AudioClip failureClip;    // 不正解時の音
 
     private int currentMochiIndex;
     private int remainingMochiCount;
@@ -42,7 +43,6 @@ public class MotiSelect : MonoBehaviour
         }
         else
         {
-            resultText.text = "ゲーム終了！";
         }
     }
 
@@ -75,40 +75,43 @@ public class MotiSelect : MonoBehaviour
 
         remainingMochiCount--;//残りの餅をカウント
         MotiImage.sprite = MotiSprites[currentMochiIndex];//餅の画像を選択
-        resultText.text = ""; // 結果をリセット
-        remainingText.text = "残り：" + remainingMochiCount;
+        //resultText.text = ""; // 結果をリセット
+        //remainingText.text = "残り：" + remainingMochiCount;
     }
 
     public void CheckAnswer(string chosenLeaf)
     {
         bool isCorrect = false;
 
-        if (chosenLeaf == "sakura" && currentMochiIndex == 0)//桜餅の葉っぱを選んだら
-        {
-            isCorrect = true; 
-            sakuraSuccess++; // 桜餅成功
-        }
-        else if (chosenLeaf == "kashiwa"  && (currentMochiIndex == 1 || currentMochiIndex == 2))//かしわとと道明の葉っぱを選んだら選んだら
+        if (chosenLeaf == "sakura" && (currentMochiIndex == 0 || currentMochiIndex == 1))//桜餅の葉っぱを選んだら
         {
             isCorrect = true;
-            if (currentMochiIndex == 1) domyoziSuccess++; // 道明餅成功
-            else kashiwaSuccess++; // 柏餅成功
+            if (currentMochiIndex == 0) sakuraSuccess++; // 道明餅成功
+            else domyoziSuccess++; // 桜餅成功
+        }
+        else if (chosenLeaf == "kashiwa" && currentMochiIndex == 2)//かしわとと道明の葉っぱを選んだら選んだら
+        {
+            isCorrect = true;
+            if (currentMochiIndex == 2) kashiwaSuccess++; // 道明餅成功
+
         }
 
         if (isCorrect)//正しい葉っぱを選んだ時
         {
-             // 成功音を再生
+            // 成功音を再生
             audioSource.PlayOneShot(successClip);
-            resultText.text = "成功！";
-            resultText.color = Color.green;
+            resultImage.SetActive(true);
+            resultImage.GetComponent<Image>().sprite = correctSprite;
+            //resultText.color = Color.green;
             MotiImage.sprite = ResultSprites[currentMochiIndex];//正しい葉っぱを選んだ餅の画像を入れる
         }
         else
         {
             // 失敗音を再生
             audioSource.PlayOneShot(failureClip);
-            resultText.text = "失敗...";
-            resultText.color = Color.red;
+            resultImage.SetActive(true);
+            resultImage.GetComponent<Image>().sprite = failSprite;
+            //resultText.color = Color.red;
         }
 
         StartCoroutine(WaitAndSetNextMochi());
@@ -120,6 +123,7 @@ public class MotiSelect : MonoBehaviour
 
         if (remainingMochiCount > 0)//残りの餅があれば続ける
         {
+            resultImage.SetActive(false);
             SetRandomMochi();
         }
         else
@@ -130,8 +134,7 @@ public class MotiSelect : MonoBehaviour
 
     private void ShowFinalResults()
     {
-        resultText.text = "ゲーム終了！\n";
-        
+
         // 成功回数を GManager に保存
         GManager.instance.sakuramotiScore = sakuraSuccess;
         GManager.instance.DomyouziScore = domyoziSuccess;

@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Nakahara/Title_NK.unity
+    guid: 22e975f38f575ea4abc6a54e2334b0d7
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
@@ -14,6 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Karakawa/Scenes/KarakawaStage.unity
     guid: 2dad68368550645bb89723bef033e472
+  - enabled: 1
+    path: Assets/Rui_Scenes/StartScene/Rui_Start.unity
+    guid: 386faf17dca6d564cbe7d0b5a0d7f61b
+  - enabled: 1
+    path: Assets/Karakawa/Scenes/CreditScene.unity
+    guid: f720e8a15cf8d46e0a3fb4edb378d36f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

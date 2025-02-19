@@ -34,6 +34,6 @@ public class TitleButton : MonoBehaviour
 
     public void creditscene()
     {
-        SceneManager.LoadScene("credit");
+        SceneManager.LoadScene("CreditScene");
     }
 }

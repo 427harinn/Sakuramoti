@@ -102,8 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6456722b51861ad4bb2aa6bdfb718a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seikai: {fileID: 8300000, guid: 553bcc26aee365b48a5c0d1c6444683e, type: 3}
-  audioSource: {fileID: 0}
+  seikai: {fileID: 8300000, guid: d2c5ceb91d5c845ff8156d3dd98752df, type: 3}
 --- !u!50 &-3355852714121025700
 Rigidbody2D:
   serializedVersion: 5

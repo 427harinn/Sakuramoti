@@ -1,12 +1,11 @@
 using UnityEditor;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class FinishScript : MonoBehaviour
 {
     //インスペクターから読み込むシーンを指定したい
-    [SerializeField] private SceneAsset sceneobj;
+    [SerializeField] string scenename;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,7 +19,7 @@ public class FinishScript : MonoBehaviour
     }
     public void finish()
     {
-        SceneManager.LoadScene(sceneobj.name);
+        SceneManager.LoadScene(scenename);
     }
 
     public void finishse()

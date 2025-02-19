@@ -12,6 +12,10 @@ public class MotiSelect : MonoBehaviour
     [SerializeField] private GameObject resultImage;
     [SerializeField] private Sprite correctSprite;
     [SerializeField] private Sprite failSprite;
+    [SerializeField] private GameObject otehonImage;
+    [SerializeField] private Sprite sakuraSprite;
+    [SerializeField] private Sprite domyoziSprite;
+    [SerializeField] private Sprite kashiwaSprite;
     [SerializeField] private AudioSource audioSource;  // AudioSource コンポーネント
     [SerializeField] private AudioClip successClip;    // 正解時の音
     [SerializeField] private AudioClip failureClip;    // 不正解時の音
@@ -59,16 +63,19 @@ public class MotiSelect : MonoBehaviour
 
         if (randomValue < sakuraCount)
         {
+            otehonImage.GetComponent<Image>().sprite = sakuraSprite;
             currentMochiIndex = 0; // 桜餅
             sakuraCount--;
         }
         else if (randomValue < sakuraCount + domyoziCount)
         {
+            otehonImage.GetComponent<Image>().sprite = domyoziSprite;
             currentMochiIndex = 1; // 道明餅
             domyoziCount--;
         }
         else
         {
+            otehonImage.GetComponent<Image>().sprite = kashiwaSprite;
             currentMochiIndex = 2; // かしわ餅
             kashiwaCount--;
         }

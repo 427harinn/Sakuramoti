@@ -8,23 +8,17 @@ public class Nomaguti_screen_Script : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "anko")
-        {
-            Destroy(collision.gameObject);
-            audioSource.PlayOneShot(hyun);
-
-        }
 
         if (collision.gameObject.tag == "rane" || collision.gameObject.tag == "tume")
         {
@@ -33,7 +27,7 @@ public class Nomaguti_screen_Script : MonoBehaviour
 
         if (collision.gameObject.tag == "kawa")
         {
-            //‚Ð‚ã‚ñ‚Á‚Ä‰¹‚ð–Â‚ç‚·‚Æ‚È‚¨‚æ‚¢
+            //ï¿½Ð‚ï¿½ï¿½ï¿½ï¿½Ä‰ï¿½ï¿½ï¿½Â‚ç‚·ï¿½Æ‚È‚ï¿½ï¿½æ‚¢
             Destroy(collision.gameObject);
             switch (collision.gameObject.name)
             {

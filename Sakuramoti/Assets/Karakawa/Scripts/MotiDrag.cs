@@ -178,7 +178,7 @@ public class MotiDrag : MonoBehaviour
     // ゲーム終了時に成功したスコアをGManagerに上書き
     private void UpdateFinalScore()
     {
-        if (sakuraSuccessCount > 0)
+        if (sakuraSuccessCount >= 0)
         {
             GManager.instance.sakuramotiScore = sakuraSuccessCount;
             GManager.instance.DomyouziScore = domyoSuccessCount;

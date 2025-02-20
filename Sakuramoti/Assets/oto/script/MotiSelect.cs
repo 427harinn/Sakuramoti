@@ -19,6 +19,7 @@ public class MotiSelect : MonoBehaviour
     [SerializeField] private AudioSource audioSource;  // AudioSource コンポーネント
     [SerializeField] private AudioClip successClip;    // 正解時の音
     [SerializeField] private AudioClip failureClip;    // 不正解時の音
+    [SerializeField] private GameObject stop;
 
     private int currentMochiIndex;
     private int remainingMochiCount;
@@ -47,6 +48,9 @@ public class MotiSelect : MonoBehaviour
         }
         else
         {
+            otehonImage.SetActive(false);
+            MotiImage.gameObject.SetActive(false);
+            stop.SetActive(true);
         }
     }
 
@@ -135,13 +139,13 @@ public class MotiSelect : MonoBehaviour
         }
         else
         {
+            stop.SetActive(true);
             ShowFinalResults();
         }
     }
 
     private void ShowFinalResults()
     {
-
         // 成功回数を GManager に保存
         GManager.instance.sakuramotiScore = sakuraSuccess;
         GManager.instance.DomyouziScore = domyoziSuccess;

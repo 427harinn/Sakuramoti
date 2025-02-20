@@ -352,10 +352,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 960, y: 540}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -400,8 +400,8 @@ RectTransform:
   m_Children:
   - {fileID: 872140159}
   - {fileID: 576389164}
-  - {fileID: 1784513844}
   - {fileID: 291661138}
+  - {fileID: 1784513844}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1155,6 +1155,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Finish
       objectReference: {fileID: 0}
+    - target: {fileID: 8294524196259957582, guid: 1095a7a99e7d3f34487381913f9f3ae8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1289,9 +1293,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 0
   gameobject:
+  - {fileID: 5067877730803448461, guid: d91119d8786214746ba52dd71954f0ad, type: 3}
   - {fileID: 4847020185424860993, guid: 78a454df61e1f9a4ba8062f99c4d1af9, type: 3}
   - {fileID: 2481237534576171538, guid: 1d7927b617c1c724b96fa7bdba0b62e7, type: 3}
-  - {fileID: 5067877730803448461, guid: d91119d8786214746ba52dd71954f0ad, type: 3}
+  nowscene_score: 000000000000000000000000
   anko: {fileID: 2031745860878914780, guid: 20ceab559aa2bf348a033ef47b4b5a5d, type: 3}
   lane: {fileID: 5038337424024158822, guid: 5f3afb02ba2bfe94b9bce3ea22ca46f1, type: 3}
   newkawa:

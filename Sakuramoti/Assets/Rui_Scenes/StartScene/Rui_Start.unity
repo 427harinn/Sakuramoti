@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 182938538}
   - component: {fileID: 182938540}
   - component: {fileID: 182938539}
+  - component: {fileID: 182938541}
   m_Layer: 5
   m_Name: usuImage
   m_TagString: Untagged
@@ -273,6 +274,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182938537}
   m_CullTransparentMesh: 1
+--- !u!95 &182938541
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182938537}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 235b66b070209423984c1db82b29c1a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &272021563
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,13 +430,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50cf5fc1e3cf41a429dd43790550d4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usuobj: {fileID: 182938537}
   wagashiImage: {fileID: 182938539}
-  beforeSakuraSprite: {fileID: 3875863658192782629, guid: 6c9f35f84f457564ba4cba129b55d844, type: 3}
-  beforeDomyojiSprite: {fileID: 3875863658192782629, guid: 6c9f35f84f457564ba4cba129b55d844, type: 3}
-  beforeKashiwaSprite: {fileID: -9206796803893991855, guid: 223723a5725fea64d965072cad53fdf7, type: 3}
-  sakuramochiSprite: {fileID: 88141693195341159, guid: d3b9ed478ba3a7a4a92e2f3ea8096c83, type: 3}
+  beforeSakuraSprite: {fileID: 88141693195341159, guid: d3b9ed478ba3a7a4a92e2f3ea8096c83, type: 3}
+  beforeDomyojiSprite: {fileID: 88141693195341159, guid: d3b9ed478ba3a7a4a92e2f3ea8096c83, type: 3}
+  beforeKashiwaSprite: {fileID: -3583904722199831660, guid: 339fbb9a50fffae4295b49fc03081082, type: 3}
+  sakuramochiSprite: {fileID: 3875863658192782629, guid: 6c9f35f84f457564ba4cba129b55d844, type: 3}
   domyojiSprite: {fileID: 7557552556708194581, guid: ed8a10d480c71b140a5c2c1b600fd69c, type: 3}
-  kashiwaMochiSprite: {fileID: -3583904722199831660, guid: 339fbb9a50fffae4295b49fc03081082, type: 3}
+  kashiwaMochiSprite: {fileID: -9206796803893991855, guid: 223723a5725fea64d965072cad53fdf7, type: 3}
   tapAudioSource: {fileID: 272021569}
   clearAudioSource: {fileID: 505478438}
   kinuobj: {fileID: 1319536564}
@@ -563,10 +587,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 960, y: 540}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1265,6 +1289,10 @@ PrefabInstance:
     - target: {fileID: 1231180341505011233, guid: 793d58bc6905be541905c148def7621a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2103358753156590993, guid: 793d58bc6905be541905c148def7621a, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2103358753156590993, guid: 793d58bc6905be541905c148def7621a, type: 3}
       propertyPath: m_Resource

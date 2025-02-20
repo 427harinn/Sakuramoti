@@ -11,7 +11,7 @@ public class Nomaguti_kawa_Script : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
         GameObject gameobject = GameObject.Find("Nomaguti_SceneManager");
         manager = gameobject.GetComponent<Nomaguti_SceneManager_Script>();
         spriterenderer = this.GetComponent<SpriteRenderer>();
@@ -38,7 +38,7 @@ public class Nomaguti_kawa_Script : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "anko")
+        if (collision.gameObject.tag == "anko" && this.gameObject.tag == "kawa")
         {
 
             this.gameObject.tag = "tume";
@@ -46,18 +46,21 @@ public class Nomaguti_kawa_Script : MonoBehaviour
             switch (this.gameObject.name)
             {
                 case "sakuramoti(Clone)":
+                    manager.nowscene_score[0]++;
                     spriterenderer.sprite = manager.newkawa[0];
                     this.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                     Invoke("resetscale", 0.5f);
                     break;
 
                 case "doumyouji(Clone)":
+                    manager.nowscene_score[1]++;
                     spriterenderer.sprite = manager.newkawa[1];
                     this.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                     Invoke("resetscale", 0.5f);
                     break;
 
                 case "kasiwamoti(Clone)":
+                    manager.nowscene_score[2]++;
                     spriterenderer.sprite = manager.newkawa[2];
                     this.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                     Invoke("resetscale", 0.5f);

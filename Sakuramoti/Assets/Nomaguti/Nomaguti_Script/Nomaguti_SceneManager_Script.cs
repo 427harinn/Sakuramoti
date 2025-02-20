@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Rendering;
 
 public class Nomaguti_SceneManager_Script : MonoBehaviour
 {
-    private float MoveTime;//ƒ^ƒCƒ€ƒfƒ‹ƒ^ƒ^ƒCƒ€‚ğ‰ÁZ‚µ‚Ä‚¢‚­‚à‚Ì
+    private float MoveTime;//ã‚¿ã‚¤ãƒ ãƒ‡ãƒ«ã‚¿ã‚¿ã‚¤ãƒ ã‚’åŠ ç®—ã—ã¦ã„ãã‚‚ã®
     private float laneTime;
-    [HideInInspector] public float MoveSpeed;//ˆÚ“®‘¬“x@30/‡Œv”
-    [SerializeField]private GameObject[] gameobject= new GameObject[3];
+    [HideInInspector] public float MoveSpeed;//ç§»å‹•é€Ÿåº¦ã€€30/åˆè¨ˆæ•°
+    [SerializeField] private GameObject[] gameobject = new GameObject[3];
     private int[] beforscene_score = new int[3];
+    public int[] nowscene_score = new int[3];
     [SerializeField] GameObject anko;
     [SerializeField] GameObject lane;
+    private bool ClearFlag = false;
+
+
+
     public Sprite[] newkawa = new Sprite[3];
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,13 +32,13 @@ public class Nomaguti_SceneManager_Script : MonoBehaviour
         laneTime = 0;
 
         MoveSpeed = 13f / (GManager.instance.sakuramotiScore + GManager.instance.DomyouziScore + GManager.instance.kasiwamotiScore);
-        if(MoveSpeed >= 1)
+        if (MoveSpeed >= 1)
         {
             MoveSpeed = 1;
         }
 
         GameObject obj = Instantiate(lane);
-        obj.transform.position = new Vector3(0f, 2f, 0f);//ƒŒ[ƒ“‚ÌƒCƒ‰ƒXƒg‚É‚æ‚Á‚Ä•Ï‚í‚é
+        obj.transform.position = new Vector3(0f, 2f, 0f);//ãƒ¬ãƒ¼ãƒ³ã®ã‚¤ãƒ©ã‚¹ãƒˆã«ã‚ˆã£ã¦å¤‰ã‚ã‚‹
         lanecreate();
     }
 
@@ -65,6 +71,18 @@ public class Nomaguti_SceneManager_Script : MonoBehaviour
                 laneTime = 0;
             }
         }
+        else
+        {
+            ClearFlag = true;
+            if (ClearFlag)
+            {
+                GManager.instance.sakuramotiScore = nowscene_score[0];
+                GManager.instance.DomyouziScore = nowscene_score[1];
+                GManager.instance.kasiwamotiScore = nowscene_score[2];
+                ClearFlag = false;
+            }
+
+        }
     }
 
     private void randomcreat()
@@ -87,6 +105,6 @@ public class Nomaguti_SceneManager_Script : MonoBehaviour
     private void lanecreate()
     {
         GameObject obj = Instantiate(lane);
-        obj.transform.position = new Vector3(13.36f, 2f, 0f);//ƒŒ[ƒ“‚ÌƒCƒ‰ƒXƒg‚É‚æ‚Á‚Ä•Ï‚í‚é
+        obj.transform.position = new Vector3(13.36f, 2f, 0f);//ãƒ¬ãƒ¼ãƒ³ã®ã‚¤ãƒ©ã‚¹ãƒˆã«ã‚ˆã£ã¦å¤‰ã‚ã‚‹
     }
 }

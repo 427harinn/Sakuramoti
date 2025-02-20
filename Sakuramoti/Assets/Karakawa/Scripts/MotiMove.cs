@@ -22,7 +22,7 @@ public class MotiMove : MonoBehaviour
         {
             transform.position += new Vector3(-motiMoveSpeed * Time.deltaTime, 0, 0);
 
-            if (this.transform.position.x < -10)
+            if (this.transform.position.x < -150)
             {
                 Destroy(this.gameObject);
             }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class MotiDrag : MonoBehaviour
 {
@@ -26,6 +27,13 @@ public class MotiDrag : MonoBehaviour
     void Start()
     {
         seaudio = this.gameObject.transform.parent.GetComponent<AudioSource>();
+        if (sakuraSuccessCount < 0)
+        {
+            sakuraSuccessCount = 0;
+            domyoSuccessCount = 0;
+            kasiwaSuccessCount = 0;
+            catSuccessCount = 0;
+        }
     }
 
     void Update()
@@ -33,6 +41,7 @@ public class MotiDrag : MonoBehaviour
         // ゲームの開始を検知（false → true）
         if (!previousGamePlayingFlag && GManager.instance.gamePlayingFlag)
         {
+            previousGamePlayingFlag = true;
             // Debug.Log("ゲーム開始");
         }
 
@@ -40,6 +49,7 @@ public class MotiDrag : MonoBehaviour
         if (previousGamePlayingFlag && !GManager.instance.gamePlayingFlag)
         {
             UpdateFinalScore();
+            ResetScore();
         }
 
         // 現在のフラグ状態を保存（次のフレームで判定できるように）
@@ -55,7 +65,6 @@ public class MotiDrag : MonoBehaviour
             }
         }
     }
-
     void OnMouseDown()
     {
         if (GManager.instance.gamePlayingFlag)
@@ -169,9 +178,23 @@ public class MotiDrag : MonoBehaviour
     // ゲーム終了時に成功したスコアをGManagerに上書き
     private void UpdateFinalScore()
     {
-        GManager.instance.sakuramotiScore = sakuraSuccessCount;
-        GManager.instance.DomyouziScore = domyoSuccessCount;
-        GManager.instance.kasiwamotiScore = kasiwaSuccessCount;
-        GManager.instance.catScore = catSuccessCount;
+        if (sakuraSuccessCount > 0)
+        {
+            GManager.instance.sakuramotiScore = sakuraSuccessCount;
+            GManager.instance.DomyouziScore = domyoSuccessCount;
+            GManager.instance.kasiwamotiScore = kasiwaSuccessCount;
+            GManager.instance.catScore = catSuccessCount;
+        }
+
+    }
+
+    private void ResetScore()
+    {
+        Debug.Log("スコアがリセットされました");
+        sakuraSuccessCount = -1;
+        domyoSuccessCount = -1;
+        kasiwaSuccessCount = -1;
+        catSuccessCount = -1;
     }
 }
+

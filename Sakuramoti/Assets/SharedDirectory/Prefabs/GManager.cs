@@ -17,6 +17,8 @@ public class GManager : MonoBehaviour
     public bool gamePlayingFlag = false;
 
 
+
+
     private void Awake()
     {
         if (instance == null)

@@ -5,6 +5,8 @@ using System.Collections;
 
 public class mochii_button : MonoBehaviour
 {
+    [SerializeField] GameObject usuobj;
+    Animator usuanim;
     public Image wagashiImage; // UIに表示する和菓子の画像
     public Sprite beforeSakuraSprite, beforeDomyojiSprite, beforeKashiwaSprite; // 正解前各和菓子のスプライト
     public Sprite sakuramochiSprite, domyojiSprite, kashiwaMochiSprite; // 正解後各和菓子のスプライト
@@ -24,6 +26,7 @@ public class mochii_button : MonoBehaviour
     bool noTapping = false;
     void Start()
     {
+        usuanim = usuobj.GetComponent<Animator>();
         SetRandomWagashi(); // 最初の和菓子を設定
     }
 
@@ -68,7 +71,7 @@ public class mochii_button : MonoBehaviour
             wagashiImage.sprite = kashiwaMochiSprite;
             GManager.instance.kasiwamotiScore++;
         }
-
+        usuanim.SetTrigger("success");
         noTapping = true;
         Invoke("SetRandomWagashi", 0.3f);
 

@@ -17,6 +17,9 @@ public class TitleButton : MonoBehaviour
 
     public void onClicked_start()
     {
+        GManager.instance.sakuramotiScore = 0;
+        GManager.instance.DomyouziScore = 0;
+        GManager.instance.kasiwamotiScore = 0;
         this.gameObject.GetComponent<AudioSource>().Play();
         Invoke("startscene", 0.5f);
     }
